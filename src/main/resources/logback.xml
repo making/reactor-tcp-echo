@@ -9,7 +9,7 @@
     </appender>
 
     <appender name="LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${app.log.dir:-log}/ector-tcp-echo.log</file>
+        <file>${app.log.dir:-log}/reactor-tcp-echo.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${app.log.dir:-log}/rector-tcp-echo-%d{yyyyMMdd}.log</fileNamePattern>
             <maxHistory>90</maxHistory>

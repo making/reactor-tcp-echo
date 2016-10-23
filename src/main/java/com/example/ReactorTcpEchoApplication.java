@@ -20,6 +20,7 @@ public class ReactorTcpEchoApplication {
 		log.info("Launching echo server on port {}", port);
 		try {
 			tcpServer.startAndAwait(ch -> ch.receiveString(StandardCharsets.UTF_8).next()
+					.map(String::trim).doOnNext(s -> log.info("Received => {}", s))
 					.publish(s -> ch.sendString(s, StandardCharsets.UTF_8)));
 		}
 		catch (InterruptedException e) {

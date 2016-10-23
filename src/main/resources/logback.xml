@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                <![CDATA[date:%d{yyyy-MM-dd HH:mm:ss}\tthread:%-32thread{32}\tlevel:%-5level\tlogger:%-48logger{48}\tmessage:%msg%n]]></pattern>
+        </encoder>
+    </appender>
+
+    <appender name="LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${app.log.dir:-log}/ector-tcp-echo.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${app.log.dir:-log}/rector-tcp-echo-%d{yyyyMMdd}.log</fileNamePattern>
+            <maxHistory>90</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>
+                <![CDATA[date:%d{yyyy-MM-dd HH:mm:ss}\tthread:%-32thread{32}\tlevel:%-5level\tlogger:%-48logger{48}\tmessage:%msg%n]]></pattern>
+        </encoder>
+    </appender>
+
+    <!-- Application Loggers -->
+    <logger name="com.example">
+        <level value="debug"/>
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="LOG_FILE"/>
+    </root>
+
+</configuration>

@@ -16,7 +16,7 @@ public class ReactorTcpEchoApplication {
 	public static void main(String[] args) {
 		int port = Optional.ofNullable(System.getenv("PORT")).map(Integer::valueOf)
 				.orElse(8080);
-		TcpServer tcpServer = TcpServer.create(port);
+		TcpServer tcpServer = TcpServer.create("0.0.0.0", port);
 		log.info("Launching echo server on port {}", port);
 		try {
 			tcpServer.startAndAwait(ch -> ch.receiveString(StandardCharsets.UTF_8).next()
